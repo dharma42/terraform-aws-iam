@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-west-1"
+  region = "us-east-1"
 }
 
 ##############
@@ -8,8 +8,13 @@ provider "aws" {
 module "iam_account" {
   source = "../../modules/iam-account"
 
-  account_alias = "new-test-account-awesome-company"
+  account_alias = "necromancer-company-001"
 
-  minimum_password_length = 6
-  require_numbers         = false
+  minimum_password_length = 42
+  require_numbers         = true
+  require_symbols         = true
+  require_uppercase_characters = true
+  require_lowercase_characters = true
+  password_reuse_prevention = 10
+  get_caller_identity = true
 }
